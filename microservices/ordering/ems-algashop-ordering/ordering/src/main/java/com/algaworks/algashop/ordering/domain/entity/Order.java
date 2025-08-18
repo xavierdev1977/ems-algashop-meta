@@ -8,6 +8,7 @@ import lombok.Builder;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -156,8 +157,9 @@ public class Order {
         return expectedDeliveryDate;
     }
 
+    //Retorna um set que não é modificável
     public Set<OrderItem> items() {
-        return items;
+        return Collections.unmodifiableSet(this.items);
     }
 
     private void setId(OrderId id) {
