@@ -56,6 +56,13 @@ public class OrderItem {
         return orderItem;
     }
 
+    //packet private, por isso só void
+    void changeQuantity(Quantity quantity) {
+        Objects.requireNonNull(quantity);
+        this.setQuantity(quantity);
+        this.recalculateTotals();
+    }
+
     public OrderItemId id() {
         return id;
     }
