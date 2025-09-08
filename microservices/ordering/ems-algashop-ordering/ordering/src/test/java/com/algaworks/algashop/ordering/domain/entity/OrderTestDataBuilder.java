@@ -12,7 +12,7 @@ public class OrderTestDataBuilder {
     private PaymentMethod paymentMethod = PaymentMethod.GATEWAY_BALANCE;
 
     private Shipping shipping = aShipping();
-    private BillingInfo billingInfo = aBillingInfo();
+    private Billing billingInfo = aBilling();
 
     private boolean withItems = true;
 
@@ -61,12 +61,14 @@ public class OrderTestDataBuilder {
         return order;
     }
 
-    public static BillingInfo aBillingInfo() {
-        return BillingInfo.builder()
+    public static Billing aBilling() {
+        return Billing.builder()
                 .address(anAddress())
                 .document(new Document("225-09-1992"))
                 .phone(new Phone("123-111-9911"))
-                .fullName(new FullName("John", "Doe")).build();
+                .fullName(new FullName("John", "Doe"))
+                .email(new Email("xavier.rodrigofabiano@gmail.com"))
+                .build();
     }
 
     public static Shipping aShipping() {
@@ -127,12 +129,12 @@ public class OrderTestDataBuilder {
         return this;
     }
 
-    public OrderTestDataBuilder shippingInfo(Shipping shipping) {
+    public OrderTestDataBuilder shipping(Shipping shipping) {
         this.shipping = shipping;
         return this;
     }
 
-    public OrderTestDataBuilder billingInfo(BillingInfo billingInfo) {
+    public OrderTestDataBuilder billing(Billing billing) {
         this.billingInfo = billingInfo;
         return this;
     }
