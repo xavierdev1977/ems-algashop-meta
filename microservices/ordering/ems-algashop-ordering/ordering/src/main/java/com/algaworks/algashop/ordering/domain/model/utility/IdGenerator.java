@@ -21,10 +21,11 @@ public class IdGenerator {
     }
 
     /*
-    * TSID_NODE
-    * TSID_NODE_COUNT
+     * TSID_NODE
+     * TSID_NODE_COUNT
      */
-    public static TSID generateTSID(){
+    public static TSID generateTSID() {
         return tsidFactory.generate();
     }
+
 }
