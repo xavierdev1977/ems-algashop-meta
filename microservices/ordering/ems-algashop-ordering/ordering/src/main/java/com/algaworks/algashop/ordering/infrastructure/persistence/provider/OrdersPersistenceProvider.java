@@ -7,7 +7,6 @@ import com.algaworks.algashop.ordering.infrastructure.persistence.assembler.Orde
 import com.algaworks.algashop.ordering.infrastructure.persistence.disassembler.OrderPersistenceEntityDisassembler;
 import com.algaworks.algashop.ordering.infrastructure.persistence.entity.OrderPersistenceEntity;
 import com.algaworks.algashop.ordering.infrastructure.persistence.repository.OrderPersistenceEntityRepository;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -24,6 +23,7 @@ public class OrdersPersistenceProvider implements Orders {
     private final OrderPersistenceEntityRepository persistenceRepository;
     private final OrderPersistenceEntityAssembler assembler;
     private final OrderPersistenceEntityDisassembler disassembler;
+
     private final EntityManager entityManager;
 
     @Override
@@ -35,7 +35,12 @@ public class OrdersPersistenceProvider implements Orders {
 
     @Override
     public boolean exists(OrderId orderId) {
-        return false;
+        return persistenceRepository.existsById(orderId.value().toLong());
+    }
+
+    @Override
+    public long count() {
+        return persistenceRepository.count();
     }
 
     @Override
@@ -44,19 +49,15 @@ public class OrdersPersistenceProvider implements Orders {
 
         persistenceRepository.findById(orderId)
                 .ifPresentOrElse(
-                        (persistenceEntity) -> {
-                            update(aggregateRoot, persistenceEntity);
-                        },
-                        ()-> {
-                            insert(aggregateRoot);
-                        }
+                        (persistenceEntity) -> update(aggregateRoot, persistenceEntity),
+                        ()-> insert(aggregateRoot)
                 );
     }
 
     private void update(Order aggregateRoot, OrderPersistenceEntity persistenceEntity) {
         persistenceEntity = assembler.merge(persistenceEntity, aggregateRoot);
         entityManager.detach(persistenceEntity);
-        persistenceRepository.saveAndFlush(persistenceEntity);
+        persistenceEntity = persistenceRepository.saveAndFlush(persistenceEntity);
         updateVersion(aggregateRoot, persistenceEntity);
     }
 
@@ -72,10 +73,5 @@ public class OrdersPersistenceProvider implements Orders {
         version.setAccessible(true);
         ReflectionUtils.setField(version, aggregateRoot, persistenceEntity.getVersion());
         version.setAccessible(false);
-    }
-
-    @Override
-    public int count() {
-        return 0;
     }
 }
