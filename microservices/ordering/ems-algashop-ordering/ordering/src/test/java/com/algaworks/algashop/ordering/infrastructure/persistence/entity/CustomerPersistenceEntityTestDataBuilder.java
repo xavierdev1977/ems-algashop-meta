@@ -1,6 +1,6 @@
 package com.algaworks.algashop.ordering.infrastructure.persistence.entity;
 
-import com.algaworks.algashop.ordering.domain.model.valueobject.id.CustomerId;
+import static com.algaworks.algashop.ordering.domain.model.entity.CustomerTestDataBuilder.DEFAULT_CUSTOMER_ID;
 import com.algaworks.algashop.ordering.infrastructure.persistence.embeddable.AddressEmbeddable;
 
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ public class CustomerPersistenceEntityTestDataBuilder {
 
     public static CustomerPersistenceEntity.CustomerPersistenceEntityBuilder aCustomer() {
         return CustomerPersistenceEntity.builder()
-                .id(new CustomerId().value())
+                .id(DEFAULT_CUSTOMER_ID.value())
                 .registeredAt(OffsetDateTime.now())
                 .promotionNotificationsAllowed(true)
                 .archived(false)
