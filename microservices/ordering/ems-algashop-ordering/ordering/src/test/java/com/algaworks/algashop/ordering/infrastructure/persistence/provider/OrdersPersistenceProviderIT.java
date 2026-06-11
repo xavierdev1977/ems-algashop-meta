@@ -1,5 +1,6 @@
 package com.algaworks.algashop.ordering.infrastructure.persistence.provider;
 
+
 import com.algaworks.algashop.ordering.domain.model.entity.CustomerTestDataBuilder;
 import com.algaworks.algashop.ordering.domain.model.entity.Order;
 import com.algaworks.algashop.ordering.domain.model.entity.OrderStatus;

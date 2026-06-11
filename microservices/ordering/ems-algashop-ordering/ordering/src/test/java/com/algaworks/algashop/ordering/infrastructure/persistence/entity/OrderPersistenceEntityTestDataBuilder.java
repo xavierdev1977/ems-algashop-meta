@@ -16,8 +16,8 @@ public class OrderPersistenceEntityTestDataBuilder {
         return OrderPersistenceEntity.builder()
                 .id(IdGenerator.generateTSID().toLong())
                 .customer(CustomerPersistenceEntityTestDataBuilder.aCustomer().build())
-                .totalItems(2)
-                .totalAmount(new BigDecimal(1000))
+                .totalItems(3)
+                .totalAmount(new BigDecimal(1250))
                 .status("DRAFT")
                 .paymentMethod("CREDIT_CARD")
                 .placedAt(OffsetDateTime.now())
@@ -26,6 +26,7 @@ public class OrderPersistenceEntityTestDataBuilder {
                         existingItemAlt().build()
                 ));
     }
+
     public static OrderItemPersistenceEntity.OrderItemPersistenceEntityBuilder existingItem() {
         return OrderItemPersistenceEntity.builder()
                 .id(IdGenerator.generateTSID().toLong())
@@ -45,5 +46,4 @@ public class OrderPersistenceEntityTestDataBuilder {
                 .productName("Mouse pad")
                 .productId(IdGenerator.generateTimeBasedUUID());
     }
-
 }
