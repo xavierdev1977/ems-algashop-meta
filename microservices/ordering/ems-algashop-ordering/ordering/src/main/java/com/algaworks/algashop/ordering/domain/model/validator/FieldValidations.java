@@ -5,7 +5,6 @@ import org.apache.commons.validator.routines.EmailValidator;
 import java.util.Objects;
 
 public class FieldValidations {
-
     private FieldValidations() {
 
     }

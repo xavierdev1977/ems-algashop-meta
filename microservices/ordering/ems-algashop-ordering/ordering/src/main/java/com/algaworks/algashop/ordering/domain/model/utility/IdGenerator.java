@@ -28,4 +28,12 @@ public class IdGenerator {
         return tsidFactory.generate();
     }
 
+    public static TSID generateTSID(String value) {
+        return TSID.from(value);
+    }
+
+    public static TSID generateTSID(Long value) {
+        return TSID.from(value);
+    }
+
 }
