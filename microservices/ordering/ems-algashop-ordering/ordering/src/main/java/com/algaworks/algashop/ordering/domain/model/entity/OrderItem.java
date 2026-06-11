@@ -38,7 +38,6 @@ public class OrderItem {
         this.setTotalAmount(totalAmount);
     }
 
-    //Factory method
     @Builder(builderClassName = "BrandNewOrderItemBuilder", builderMethodName = "brandNew")
     private static OrderItem createBrandNew(OrderId orderId,
                                             Product product,
@@ -62,7 +61,6 @@ public class OrderItem {
         return orderItem;
     }
 
-    //packet private, por isso só void
     void changeQuantity(Quantity quantity) {
         Objects.requireNonNull(quantity);
         this.setQuantity(quantity);
@@ -147,4 +145,5 @@ public class OrderItem {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }

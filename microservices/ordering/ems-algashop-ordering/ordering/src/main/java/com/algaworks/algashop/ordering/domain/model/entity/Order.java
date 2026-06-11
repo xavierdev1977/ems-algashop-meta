@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Order  implements AggregateRoot<OrderId>{
+public class Order implements AggregateRoot<OrderId> {
 
     private OrderId id;
     private CustomerId customerId;
@@ -300,11 +300,11 @@ public class Order  implements AggregateRoot<OrderId>{
         }
     }
 
-    public Long version(){
+    public Long version() {
         return version;
     }
 
-    private void setVersion(Long version){
+    private void setVersion(Long version) {
         this.version = version;
     }
 
