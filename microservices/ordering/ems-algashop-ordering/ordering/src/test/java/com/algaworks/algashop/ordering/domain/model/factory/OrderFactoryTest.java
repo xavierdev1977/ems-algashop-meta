@@ -16,7 +16,7 @@ class OrderFactoryTest {
 
     @Test
     public void shouldGenerateFilledOrderThatCanBePlaced() {
-        Shipping shipping= OrderTestDataBuilder.aShipping();
+        Shipping shipping = OrderTestDataBuilder.aShipping();
         Billing billing = OrderTestDataBuilder.aBilling();
 
         Product product = ProductTestDataBuilder.aProduct().build();
